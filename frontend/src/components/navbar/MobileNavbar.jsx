@@ -58,7 +58,6 @@ const GuestButtons = ({ setOpen = () => { } }) => {
 }
 
 const ProfileButtons = ({ user, logout, setOpen = () => { } }) => {
-  const history = useHistory();
 
   return (
     <div
@@ -82,7 +81,6 @@ const ProfileButtons = ({ user, logout, setOpen = () => { } }) => {
 
 const MobileNavbar = ({ user, logout, toggleTheme }) => {
   const [open, setOpen] = useState(false);
-  const history = useHistory();
 
   return (
     <HeaderNavigation
