@@ -1,7 +1,7 @@
 import { React } from "react";
 import SignupForm from "components/forms/SignupForm";
 
-export const Login = () => {
+export const Signup = () => {
   return (
     <section>
       <SignupForm />
@@ -9,4 +9,4 @@ export const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

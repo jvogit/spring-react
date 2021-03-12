@@ -40,7 +40,7 @@ public class AccountController {
     public ApiResponse me(@AuthenticationPrincipal JwtUserPrincipal _user) {
         return new ApiSuccess() {
             @JsonProperty
-            private Object user = userService.findUserById(_user.getId());
+            private Object user = _user.getUser();
         };
     }
 

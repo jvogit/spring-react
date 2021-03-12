@@ -1,6 +1,6 @@
 # spring-react
 Spring-React is my template repository for a full-scale web application
-using SpringBoot, React, and PostgreSQL.
+using SpringBoot, React CRA, and PostgreSQL.
 
 ## Run build
 1. Run `gradlew bootRun` to launch app

@@ -1,11 +1,6 @@
+import { StyledBody } from "baseui/card";
 import { H1, H2, Paragraph1 } from "baseui/typography";
 import React from "react";
-
-const StyledLi = (props) => {
-  return (
-    <li><Paragraph1>{props.children}</Paragraph1></li>
-  )  
-}
 
 export const Home = () => {
   return (
@@ -16,13 +11,15 @@ export const Home = () => {
         using SpringBoot, React, and PostgreSQL.
       </Paragraph1>
       <H2>Features</H2>
-      <ul>
-        <StyledLi>JWT Authentication</StyledLi>
-        <StyledLi>Redux + react-saga middleware</StyledLi>
-        <StyledLi>baseweb UI</StyledLi>
-        <StyledLi>Heroku deployment ready</StyledLi>
-        <StyledLi>Mobile first</StyledLi>
-      </ul>
+      <StyledBody>
+        <ul>
+          <li>JWT Authentication</li>
+          <li>Redux + react-saga middleware</li>
+          <li>baseweb UI</li>
+          <li>Heroku deployment ready</li>
+          <li>Mobile first</li>
+        </ul>
+      </StyledBody>
     </section>
   );
 }

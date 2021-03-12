@@ -10,7 +10,7 @@ import {
 import { Button, KIND, SIZE } from "baseui/button";
 import { LOGOUT_REQUEST } from "utils/storeConsts";
 import { HeadingXSmall } from "baseui/typography";
-import { Menu, Plus } from "baseui/icon";
+import { Menu, Show } from "baseui/icon";
 import { Drawer } from 'baseui/drawer';
 import ProfileButton from "components/navbar/ProfileButton";
 
@@ -25,6 +25,59 @@ const MobileNavButton = (props) => {
       {props.children}
     </Button>
   );
+}
+
+const GuestButtons = ({ setOpen = () => { } }) => {
+  const history = useHistory();
+
+  return (
+    <div
+      style={{
+        display: "block",
+        padding: "3rem 0",
+      }}
+    >
+      <MobileNavButton
+        onClick={() => {
+          history.push("/login");
+          setOpen(false);
+        }}
+      >
+        Login
+      </MobileNavButton>
+      <MobileNavButton
+        onClick={() => {
+          history.push("/signup");
+          setOpen(false);
+        }}
+      >
+        Signup
+      </MobileNavButton>
+    </div>
+  )
+}
+
+const ProfileButtons = ({ user, logout, setOpen = () => { } }) => {
+  const history = useHistory();
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        width: "100%",
+        paddingTop: "1rem",
+        float: "right",
+      }}
+    >
+      <ProfileButton
+        user={user}
+        onLogout={logout}
+        onItemSelect={() => setOpen(false)}
+      />
+    </div>
+  )
 }
 
 const MobileNavbar = ({ user, logout, toggleTheme }) => {
@@ -49,15 +102,6 @@ const MobileNavbar = ({ user, logout, toggleTheme }) => {
         <StyledNavigationItem>
           <Button
             kind={KIND.minimal}
-            size={SIZE.compact}
-            onClick={toggleTheme}
-          >
-            <Plus />
-          </Button>
-        </StyledNavigationItem>
-        <StyledNavigationItem>
-          <Button
-            kind={KIND.minimal}
             size={SIZE.mini}
             onClick={() => setOpen(true)}
           >
@@ -68,30 +112,26 @@ const MobileNavbar = ({ user, logout, toggleTheme }) => {
             renderAll
             onClose={() => setOpen(false)}
           >
-            <div
-              style={{
-                display: "block",
-                padding: "10px"
-              }}
+            {
+              user ?
+                <ProfileButtons
+                  user={user}
+                  logout={logout}
+                  setOpen={setOpen}
+                />
+                :
+                <GuestButtons
+                  setOpen={setOpen}
+                />
+            }
+            <MobileNavButton
+              kind={KIND.minimal}
+              size={SIZE.compact}
+              onClick={toggleTheme}
+              startEnhancer={() => <Show />}
             >
-              {
-                user ?
-                  <ProfileButton 
-                    user={user}
-                    onLogout={logout}
-                    onItemSelect={() => setOpen(false)}
-                  />
-                  :
-                  <MobileNavButton
-                    onClick={() => {
-                      history.push("/login");
-                      setOpen(false);
-                    }}
-                  >
-                    Login
-                  </MobileNavButton>
-              }
-            </div>
+              Toggle Theme
+            </MobileNavButton>
           </Drawer>
         </StyledNavigationItem>
       </StyledNavigationList>

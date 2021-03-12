@@ -5,7 +5,6 @@ plugins {
 }
 
 // -PBUILD_TYPE=dev
-// Do not set skipNpm to build frontend
 def buildType = System.getenv("BUILD_TYPE") ?: "dev"
 
 group = 'com.github.jvogit'

@@ -61,13 +61,13 @@ const DesktopNavbar = ({ user, logout, toggleTheme }) => {
       </StyledNavigationList>
       <StyledNavigationList $align={ALIGN.center} />
       <StyledNavigationList $align={ALIGN.right}>
-        <StyledNavigationItem>
+        {!user && <StyledNavigationItem>
           <NavButton
             to={"/signup"}
           >
             Sign up
           </NavButton>
-        </StyledNavigationItem>
+        </StyledNavigationItem>}
         <StyledNavigationItem>
           <Button
             kind={KIND.minimal}

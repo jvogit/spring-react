@@ -17,6 +17,7 @@ import com.github.jvogit.springreact.entity.account.User;
 import com.github.jvogit.springreact.entity.role.RoleName;
 import com.github.jvogit.springreact.exception.BadRequestException;
 import com.github.jvogit.springreact.jwt.JwtTokenProvider;
+import com.github.jvogit.springreact.jwt.JwtUserPrincipal;
 import com.github.jvogit.springreact.payload.LoginPayload;
 import com.github.jvogit.springreact.payload.SignupPayload;
 import com.github.jvogit.springreact.repository.RoleRepository;
@@ -59,8 +60,8 @@ public class UserService {
                         request.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(auth);
-
-        return new LoginResponse(auth.getPrincipal(),
+        User user = ((JwtUserPrincipal) auth.getPrincipal()).getUser();
+        return new LoginResponse(user,
                 jwtTokenProvider.generateToken(auth));
     }
 

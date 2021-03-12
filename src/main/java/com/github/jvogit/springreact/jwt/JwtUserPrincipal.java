@@ -27,6 +27,7 @@ public class JwtUserPrincipal implements UserDetails {
     private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
+    private User user;
 
     @Override
     public boolean isAccountNonExpired() {
@@ -54,7 +55,7 @@ public class JwtUserPrincipal implements UserDetails {
                 .collect(Collectors.toList());
 
         return new JwtUserPrincipal(user.getId(), user.getUsername(), user.getEmail(),
-                user.getPassword(), authorities);
+                user.getPassword(), authorities, user);
     }
 
 }
